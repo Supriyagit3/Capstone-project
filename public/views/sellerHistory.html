@@ -1,0 +1,24 @@
+<div class="container">
+	<div class="row row-content">
+		<div class="col-xs-12">
+			<table class="table-responsive table-striped">
+				 <thead class="thead-dark">
+					<tr>
+					  <th style="width: 50%" class="text-center">Name</th>
+					  <th style="width: 10%" class="text-center">Price</th>
+					  <th style="width: 20%" class="text-center">Quantity</th>
+					  <th style="width: 20%" class="text-center">Harvest Date</th>
+					</tr>
+				  </thead>
+				  <tbody>
+					<tr ng-repeat="item in sellHistory">
+					  <td class="text-center">{{item.name}}</td>
+					  <td class="text-center">{{item.price}}</td>
+					  <td class="text-center">{{item.quantity}}</td>
+					  <td class="text-center">{{item.harvestDate}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

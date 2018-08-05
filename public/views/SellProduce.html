@@ -1,0 +1,44 @@
+    <div class="container">
+        <div class="row row-content">
+			<form name="produceForm" ng-submit="submitProduce()" novalidate>
+					<div class="form-group" >
+						<label for='produceType' class="col-sm-5">Produce Type</label>
+						<select name="produceType" ng-model="type" ng-options="t.name for t in types" ng-change="selectType(type)">							 
+							  {{type}}
+						</select>
+					</div>
+					<div class="form-group" >
+						<label for='produceName' class="col-sm-5">Produce name</label>
+						<input name="produceName" type="text" ng-model="name">
+					</div>
+					<div class="form-group" >
+						<label for='producePrice' class="col-sm-5">Price</label>
+						<input name="producePrice" type="text" ng-model="price"><span>/kg</span>
+					</div>
+					<div class="form-group" >
+						<label for='produceQty' class="col-sm-5">Quantity</label>
+						<input name="produceQty" type="text" ng-model="quantity">
+					</div>
+					<div class="form-group" >
+						<label for='produceHarvestDate' class="col-sm-5">Harvest date</label>
+						<input name="produceHarvestDate" type="date" ng-model="harvestDate">
+					</div>
+					<div class="form-group" >
+						<label for='description' class="col-sm-5">Description</label>
+						<textarea class="form-control" name="comment" rows="6" ng-model="description" required></textarea>
+					</div>
+					<div class="form-group" >
+						<label for='image' class="col-sm-3">Upload image</label>
+						<input id="image_file" type="file" file-model="imageFile" >
+					</div>
+					<div class="form-group">
+						<input type='submit' value='Submit' class="btn btn-primary" ng-disabled="produceForm.$invalid">
+					</div>
+					<br/>
+					<div class="form-group">
+						<p class="text-success">{{message}}</p>
+						<p class="text-warning">{{errMessage}}</p>
+					</div>
+				</form>
+		</div>
+    </div>

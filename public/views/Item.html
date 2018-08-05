@@ -1,0 +1,104 @@
+    <div class="container">
+        <div class="row">
+			<div class="col-xs-12">
+				<div class="media">
+                    <div class="media-left media-middle">
+                        <a href="#">
+                        <img class="media-object img-thumbnail" ng-src={{"images/"+produce.images}} alt="produce image">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h2 class="media-heading">{{produce.name}} <span class="badge">Rs.{{produce.price}}</span></h2>
+						<p>Quantity available - {{produce.qtyAvailable}} kg</p>
+                        <p>{{produce.description}}</p>
+						<h3>Sold by:</h3><p>{{produce.user.username}}</p>
+						<h3>Uploaded on:</h3><p>{{produce.harvestDate | date:'dd MMM yyyy'}}</p>
+                    </div>
+                </div>
+            </div>			
+			<div class="col-sm-3 col-sm-offset-5">
+				<br/><br/>
+				
+				<input type='number' class='default' placeholder="kg" ng-model="buyQty" min="0" max={{produce.qtyAvailable}}>
+				<input type='button' value='Buy' class="btn btn-success" ng-click="AddToCart()" ng-if="!disableBuyer">
+				
+				<div ng-if="proceedToChkOut">
+				<input type='button' value='Proceed to checkout' class="btn btn-success" ui-sref="app.cart">
+				</div>
+				<br/><br/>
+				<p class="text-warning">{{message}}</p>
+			</div>
+		</div>
+		<br/>
+		<div class="row">
+			<div class="col-sm-4">
+				<h3>Buyer feedback</h3>
+			</div>					
+			<div class="col-sm-8">
+				<form class="form-horizontal">
+					<div class="form-group">
+						<span>Sort by:</span>
+						<input type="text" ng-model="sortByText">
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="row">		
+			<ul class="list-unstyled">
+				<blockquote ng-repeat="review in reviews | orderBy: sortByText">
+					<p>{{review.rating}} stars</p>
+					<p>{{review.comment}}</p>
+					<footer>
+						{{review.user.username}}, {{review.date | date: "MMM dd yyyy"}}							
+					</footer>
+				</blockquote>
+			</ul>
+		</div>	
+		<div class="row">	
+			<div class="col-sm-11 col-xs-offset-1" ng-if="!disableBuyer">
+				<ul class="list-unstyled">
+					<blockquote ng-show="!commentForm.$invalid && !commentForm.$pristine">
+						<p>{{myreview.rating}} stars</p>
+						<p>{{myreview.comment}}</p>
+						<footer>
+							{{myreview.user}}							
+						</footer>
+					</blockquote>
+				</ul>
+                <form name="reviewForm" ng-submit="submitReview()" novalidate>					
+					<div class="form-group row">
+						<label class="col-sm-3 col-form-label" for='rating'>No of Stars</label>
+						<div class="col-sm-9">
+							<label class="radio-inline">
+								<input type="radio" id="rating1" name="rating" value="1" ng-model="myreview.rating">1
+							</label>
+							<label class="radio-inline">
+								<input type="radio" id="rating2" name="rating" value="2" ng-model="myreview.rating">2
+							</label>
+							<label class="radio-inline">
+								<input type="radio" id="rating3" name="rating" value="3" ng-model="myreview.rating">3
+							</label>
+							<label class="radio-inline">
+								<input type="radio" id="rating4" name="rating" value="4" ng-model="myreview.rating">4
+							</label>
+							<label class="radio-inline">
+								<input type="radio" id="rating5" name="rating" value="5"  ng-model="myreview.rating">5
+							</label>
+						</div>
+					</div>
+					<div class="form-group row" ng-class="{'has-error' : reviewForm.comment.$error.required && !reviewForm.comment.$pristine }">
+						<label class="col-sm-3 col-form-label" for='comment'>Your Comments</label>
+						<div class="col-sm-9">
+							<textarea name="comment" ng-model="myreview.comment" required></textarea>
+							<span ng-show="reviewForm.comment.$error.required && !reviewForm.comment.$pristine" class="help-block">Your comment is required.</span>
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-sm-9">
+							<input type='submit' value='Submit Comment' class="btn btn-primary" ng-disabled="reviewForm.$invalid">
+						</div>
+					</div>
+                </form>
+            </div>
+        </div>
+    </div>

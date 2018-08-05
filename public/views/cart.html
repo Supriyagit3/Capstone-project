@@ -1,0 +1,23 @@
+<div class="container">
+		<ul class="list-group">
+			<li class="list-group-item d-flex justify-content-between align-items-center" ng-repeat="item in cart">					
+				<input class="btn btn-xs btn-danger" value="Remove" type="button" ng-click="remove(item.produceId)">
+			    <p>{{item.produceName}}</p>
+			    <p>{{item.quantity}} kg</p>
+				<span class="badge badge-primary badge-pill">Rs.{{item.price * item.quantity}}</span>
+			</li>
+			<li class="list-group-item d-flex justify-content-between align-items-center">
+				<p></p>
+				<p>Total<p>
+				<p></p>
+				<span class="badge badge-primary badge-pill">Rs.{{total}}</span>				
+			</li>
+		</ul>
+		<br/>
+		<div class="row">
+			<div class="col-sm offset-sm-11">
+				<input class="btn btn-sm btn-success" value="Pay" type="button" ng-click="pay()">
+			</div>
+		</div>
+		<br/>
+</div>

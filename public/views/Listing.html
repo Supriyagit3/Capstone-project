@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row">
+	 <div class="col-xs-12 col-sm-6">
+		 <ul class="media-list">
+		  <li class="media" ng-repeat="produce in produces" ng-click="selectItem(produce)">
+			<div class="media-left media-middle">			  
+				<img class="media-object img-thumbnail" ng-src={{"images/"+produce.images}}>			  
+			</div>			
+			<div class="media-body">
+			  <h4 class="media-heading">{{produce.name}}</h4>
+			  <span class="badge">Rs.{{produce.price}}</span>
+			  <p>Quantity available - {{produce.qtyAvailable}} kg</p>
+			  <p>{{produce.description}}</p>
+			</div>
+		  </li>
+		</ul>	  
+	 </div>
+  </div>
+</div>

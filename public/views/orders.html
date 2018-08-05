@@ -1,0 +1,13 @@
+<div class="container">
+	<div class="row row-content">		
+		<ul class="list-group">
+			<li class="list-group-item list-group-item-action flex-column align-items-start" ng-repeat="order in orders">					
+				<p>{{order.produceId.name}}</p>
+				<p>Price:<span class="badge">Rs.{{order.price}}</span></p>
+			    <p>Quantity:<span>{{order.quantity}} kg</span></p>	
+				<p>Order date: <span>{{order.orderDate}}</span></p>
+				<p>Status: <span>{{order.status}}</span></p>
+			</li>
+		</ul>
+	</div>
+</div>

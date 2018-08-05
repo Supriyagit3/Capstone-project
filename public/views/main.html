@@ -1,0 +1,28 @@
+<div class="container">
+	<h3>Latest items added ... </h3>
+  <div class="row">
+	<div class="col-xs-12 col-sm-6">
+		 <ul class="media-list">
+		  <li class="media" ng-repeat="produce in latestProduce" ng-click="selectProduce(produce._id)">
+			<div class="media-left media-middle">			  
+				<img class="media-object img-thumbnail" ng-src={{"images/"+produce.images}}>			  
+			</div>	
+			<div class="media-body">
+			  <h4 class="media-heading">{{produce.name}}</h4>
+			  <span class="badge">Rs.{{produce.price}}</span>
+			  <p>{{produce.description}}</p>
+			</div>
+		  </li>
+		</ul>	
+	</div>
+  </div>
+  <br/>
+  <div class="row">
+	<div class="col-xs-12">
+		<input class="btn btn-sm btn-warning" type="button" value="View All" ng-click="changeState()">
+	</div>
+  </div>
+</div>
+<br/>
+	
+

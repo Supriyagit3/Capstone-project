@@ -1,0 +1,29 @@
+{
+  "name": "orkitch",
+  "description": "v.3",
+  "main": "index.html",
+  "authors": [
+    "Supriya"
+  ],
+  "license": "MIT",
+  "moduleType": [],
+  "homepage": "index.html",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^4.0.0",
+    "font-awesome": "^5.0.9",
+    "angular": "^1.6.9",
+    "angular-route": "^1.6.9",
+    "angular-ui-router": "^1.0.15",
+    "angular-resource": "^1.6.9",
+    "angular-mocks": "^1.6.9",
+    "ng-dialog": "^1.4.0"
+  }
+}

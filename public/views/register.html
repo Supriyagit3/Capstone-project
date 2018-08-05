@@ -1,0 +1,43 @@
+    <div class="ngdialog-message">
+        <div class="">
+            <h3>Register </h3>
+        </div>
+        <div class="">&nbsp;</div>
+        <div class="">
+            <form ng-submit="doRegister()">
+                <div class="form-group">
+                    <label class="sr-only" for="username">Username</label>
+                    <input type="text" class="form-control input-sm" id="username" placeholder="Username" ng-model="registration.username">
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="password">Password</label>
+                    <input type="password" class="form-control input-sm" id="password" placeholder="Password" ng-model="registration.password">
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="firstname">Name</label>
+                    <input type="text" class="form-control input-sm" id="firstname" placeholder="Name" ng-model="registration.name">
+                </div>
+				<div class="form-group">
+                    <label class="sr-only" for="address">Address</label>
+                    <input type="text" class="form-control input-sm" id="address" placeholder="Address" ng-model="registration.address">
+                </div>
+				<div class="form-group">
+                    <label class="sr-only" for="firstname">Mobile no.</label>
+                    <div class="input-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text" id="basic-addon1">+91</span>
+						</div>
+						<input type="tel" class="form-control input-sm" id="mobileNo" placeholder="Mobile No." ng-model="registration.mobileNo" 
+						maxlength="10" required>
+					</div>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" ng-model="registration.rememberMe"> Remember me
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-info btn-sm">Register</button>
+                <button type="button" class="btn btn-default btn-sm" ng-click=closeThisDialog("Cancel")>Cancel</button>
+            </form>
+        </div>
+    </div>

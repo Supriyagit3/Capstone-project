@@ -1,0 +1,14 @@
+<div class="container">
+	<div class="row">
+		<div class="col col-xs-12" ng-if="!showErrMsg">
+			Payment gateway... <br/><br/>
+			Thank you for the order. You order will be delivered in 2-3 days.
+		</div>
+	</div>
+<br/>	
+	<div class="row">
+		<div class="col col-xs-3" ng-if="showErrMsg">{{errMessage}}</div>
+		<input type='button' value='OK' class="btn btn-info" ng-click="reDirect()">
+	</div>
+</div>
+<br/>
