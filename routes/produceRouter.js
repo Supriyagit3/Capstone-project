@@ -11,6 +11,7 @@ var produceRouter = express.Router();
 
 produceRouter.use(bodyparser.json());
 
+//Find produces with qty available greater than 0.
 produceRouter.route('/')
 .get(function(req,res,next){
 	Produces.find({"qtyAvailable":{"$gt":0}}).sort({"harvestDate":-1})
@@ -20,6 +21,7 @@ produceRouter.route('/')
 	});
 })
 
+//Insert a new produce.
 .post(Verify.verifyOrdinaryUser, function(req,res,next){	
 
 	req.body.user = req.decoded._doc._id;
@@ -29,15 +31,13 @@ produceRouter.route('/')
 		console.log('Produce created');
 		var id = produce._id;
 		
-		/*res.writeHead(200, {
-            'Content-Type': 'text/plain'
-        });*/
-        res.end('Produces created with id: ' + id);
+		res.end('Produces created with id: ' + id);
 	});
 	
 	res.end('Produces created');
 });
 
+//Get produces uploaded by a user and sort by harvestDate.
 produceRouter.route('/user')
 .get(Verify.verifyOrdinaryUser, function(req,res,next){
 	Produces.find({"user": req.decoded._doc._id}).sort({"harvestDate":-1})
@@ -48,6 +48,7 @@ produceRouter.route('/user')
 	})
 });
 
+//Save image at /upload location.
 produceRouter.route('/saveImage')
 .post(Verify.verifyOrdinaryUser, function(req,res,next){
 	upload(req,res,function(err){
@@ -61,6 +62,7 @@ produceRouter.route('/saveImage')
 	});
 });
 
+//Get top 3 produces with quantity available greater than 0 and sort harvest date.
 produceRouter.route('/latest')
 .get(function(req,res,next){
 	
@@ -72,6 +74,7 @@ produceRouter.route('/latest')
 	})
 });
 
+//Get types of produce.
 produceRouter.route('/type')
 .get(function(req,res,next){
 	Types.find({})
@@ -82,6 +85,7 @@ produceRouter.route('/type')
 	})
 });
 
+//Get produce id = produceId
 produceRouter.route('/:produceId')
 .get(function(req,res,next){
 	Produces.find({"_id": req.params.produceId})
@@ -93,6 +97,7 @@ produceRouter.route('/:produceId')
 	})
 });
 
+//Update details of a produce.
 produceRouter.route('/:produceId')
 .put(Verify.verifyOrdinaryUser, function(req,res,next){
 	Produces.findOneAndUpdate({"_id": req.params.produceId, "user": req.decoded._doc._id},{
@@ -105,6 +110,7 @@ produceRouter.route('/:produceId')
 	});
 })
 
+//Delete produce.
 .delete(Verify.verifyOrdinaryUser, function(req,res,next){
 	Produces.findOneAndRemove({"_id": req.params.produceId, "user": req.decoded._doc._id}, function (err, resp) {        
 	 if (err) next(err);
@@ -112,6 +118,7 @@ produceRouter.route('/:produceId')
     });
 });
 
+//Update quantity of produce.
 produceRouter.route('/:produceId/updtQty')
 .put(Verify.verifyOrdinaryUser, function(req,res,next){
 	console.log(req.body.qtyAvailable);

@@ -12,13 +12,21 @@ var LocalStrategy = require('passport-local').Strategy;
 // Connection URL
 
 mongoose.Promise = global.Promise; //Mongoose promise has been depracated. 
-mongoose.connect(config.mongoUrl);
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function () {
-	// we're connected!
-    console.log("Connected correctly to server");
+//mongoose.connect(config.mongoUrl);
+var promise = mongoose.connect("mongodb+srv://admin:I05hGskwZc8oerUv@cluster0-ejmpp.mongodb.net/orkitch?retryWrites=true", {
 });
+
+promise.then(function(db){
+	console.log(db);
+	db.on('error', console.error.bind(console, 'connection error:'));
+	db.once('open', function () {
+		// we're connected!
+		console.log("Connected correctly to server");
+	});
+});
+
+//var db = mongoose.connection;
+
 
 var routes = require('./routes/index');
 var users = require('./routes/users');

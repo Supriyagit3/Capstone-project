@@ -7,6 +7,7 @@ var searchRouter = express.Router();
 
 searchRouter.use(bodyparser.json());
 
+//Find produce of the given name.
 searchRouter.route('/:name')
 .get(function(req,res,next){
 	console.log('here');

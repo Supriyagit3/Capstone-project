@@ -18,9 +18,10 @@ userRouter.route('/')
   });
 });
 
+//Update details of user.
 userRouter.route('/:id')
 .put(Verify.verifyOrdinaryUser, function(req,res,next){
-	console.log(req.body);
+	
 	User.findByIdAndUpdate(req.params.id, {
         $set: req.body
     }, 
@@ -30,6 +31,7 @@ userRouter.route('/:id')
     });
 });
 
+//Insert new user.
 userRouter.route('/register')
 .post(function(req, res) {	
     User.register(new User({ username : req.body.username }),
@@ -86,6 +88,7 @@ userRouter.route('/register')
     });
 });
 
+//Login user using passport.
 userRouter.route('/login')
 .post(function(req, res, next) {
   passport.authenticate('local', function(err, user, info) {
@@ -115,6 +118,7 @@ userRouter.route('/login')
   })(req,res,next);
 });
 
+//User logout
 userRouter.route('/logout')
 .get(function(req, res) {
     req.logout();

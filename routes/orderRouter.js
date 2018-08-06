@@ -13,12 +13,14 @@ orderRouter.route('/')
 	
 	for(var i = 0; i < orders.length; i++)
 	{
+		//Insert order.
 		orders[i].userId = req.decoded._doc._id;
 		orders[i].status = 0;
 		console.log(orders[i]);
 		Orders.create(orders[i],function(err, order){
 			if(err) return next(err);				
 		});
+		//Update produce quantity
 		Produces.findOneAndUpdate({"_id": orders[i].produceId}, {qtyAvailable: orders[i].qtyAvailable}, {
 			new: false
 		}, function (err, produce) {
@@ -30,6 +32,7 @@ orderRouter.route('/')
 	
 })
 
+//Find order for userId and sort by order date.
 .get(Verify.verifyOrdinaryUser, function(req,res,next){
 	Orders.find({"userId": req.decoded._doc._id}).sort("-orderDate")
 	.populate('produceId')
